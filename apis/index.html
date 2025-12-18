@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="poke-name"></h1>
+    <img id="poke-img" src="" alt="">
+    <script>
+      const pokemon = 'snom'
+      const API_URL = 'https://pokeapi.co/api/v2'
+      const API_ENDPOINT = `/pokemon/${pokemon}/`
+
+      async function getPokemon() {
+        try {
+            const response = await fetch(`${API_URL}${API_ENDPOINT}`) // 'https://pokeapi.co/api/v2/pokemon/${pokemon}/'
+    
+            if(!response.ok) {
+                throw new Error('Oye no sé que pasó')
+            }
+
+            const pokemon = await response.json()
+            return pokemon
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
+    
+    async function renderPokemon() {
+        const elementName = document.getElementById('poke-name')
+        const elementImg = document.getElementById('poke-img')
+        
+        const pokemon = await getPokemon()
+        
+        elementName.textContent = pokemon.name
+        elementImg.src = pokemon.sprites.other['official-artwork'].front_default
+    }
+
+    renderPokemon()
+
+    </script>
+  </body>
+</html>

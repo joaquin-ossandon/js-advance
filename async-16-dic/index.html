@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function procesarDatos(datos, callback) {
+      //     console.log("Procesando los datos recibidos...");
+      //     // Simulamos un procesamiento que tarda un tiempo
+      //     setTimeout(() => {
+      //       const datosProcesados = datos.toUpperCase();
+      //       callback(datosProcesados); // Ejecutamos el callback con el resultado
+      //     }, 5000);
+      //   }
+
+      //   // Invocamos la función, pasándole los datos y la función callback.
+      //   procesarDatos("hola mundo", (resultado) => {
+      //     console.log(`Resultado final: ${resultado}`);
+      //   });
+
+      //   function simularDescarga(url) {
+      //     return new Promise((resolve, reject) => {
+      //       console.log(`Iniciando descarga de ${url}...`);
+      //       setTimeout(() => {
+      //         if (url.includes("error")) {
+      //           // Rechazamos la promesa con un objeto Error.
+      //           reject(
+      //             new Error("La URL contiene un error y no se pudo descargar.")
+      //           );
+      //         } else {
+      //           // Resolvemos la promesa con el resultado exitoso.
+      //           resolve(`Contenido descargado de ${url}`);
+      //         }
+      //       }, 2500);
+      //     });
+      //   }
+
+      //   simularDescarga("error")
+      //     .then((resultado) => console.log(resultado))
+      //     .catch((error) => console.error(error.message));
+
+      async function obtenerNombreDeUsuarioGoogle() {
+        try {
+          console.log("Iniciando obtención de datos...");
+          const respuesta = await fetch(
+            "https://api.github.com/users/google",
+            {
+                method: 'GET',
+                headers: {
+                    
+                }
+            }
+          );
+
+          // El código se detiene aquí hasta que la promesa de fetch se resuelva.
+          if (!respuesta.ok) {
+            throw new Error(`Error HTTP: ${respuesta.status}`);
+          }
+
+          const datos = await respuesta.json();
+          // El código se detiene aquí hasta que la promesa de .json() se resuelva.
+
+          console.log(`El nombre de la organización es: ${datos.name}`);
+        } catch (error) {
+          console.error("Falló la operación asíncrona:", error.message);
+        } finally {
+          console.log("Proceso async/await finalizado.");
+        }
+      }
+
+      obtenerNombreDeUsuarioGoogle()
+
+
+      fetch(
+            "https://api.github.com/users/google"
+          ).then((response) => {
+            return response.json()
+          }).then((bodyInfo) => {
+            console.log(bodyInfo)
+          })
+    </script>
+  </body>
+</html>

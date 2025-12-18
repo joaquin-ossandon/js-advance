@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const xhr = new XMLHttpRequest();
+
+      xhr.addEventListener("load", () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          const datos = JSON.parse(xhr.responseText); // JSON.parse convierte el texto (string) en un Objeto
+          console.log("Datos recibidos con XHR:", datos[0].title);
+        } else {
+          console.error(
+            `Error en la petición XHR: ${xhr.status} - ${xhr.statusText}`
+          );
+        }
+      });
+
+      xhr.addEventListener('progress', (event) => {
+        console.log(event.loaded / event.total)
+      })
+
+      xhr.addEventListener("error", () => {
+        console.error("Error de red al realizar la petición XHR.");
+      });
+
+      xhr.open(
+        "GET",
+        "https://jsonplaceholder.typicode.com/todos"
+      );
+
+      xhr.send();
+
+      console.log("Petición XHR enviada...");
+    </script>
+  </body>
+</html>
