@@ -7,40 +7,39 @@
   </head>
   <body>
     <h1 id="poke-name"></h1>
-    <img id="poke-img" src="" alt="">
+    <img id="poke-img" src="" alt="" />
     <script>
-      const pokemon = 'snom'
-      const API_URL = 'https://pokeapi.co/api/v2'
-      const API_ENDPOINT = `/pokemon/${pokemon}/`
+      const pokemon = "snom";
+      const API_URL = "https://pokeapi.co/api/v2";
+      const API_ENDPOINT = `/pokemon/${pokemon}/`;
 
       async function getPokemon() {
         try {
-            const response = await fetch(`${API_URL}${API_ENDPOINT}`) // 'https://pokeapi.co/api/v2/pokemon/${pokemon}/'
-    
-            if(!response.ok) {
-                throw new Error('Oye no sé que pasó')
-            }
+          const response = await fetch(`${API_URL}${API_ENDPOINT}`); // 'https://pokeapi.co/api/v2/pokemon/${pokemon}/'
 
-            const pokemon = await response.json()
-            return pokemon
+          if (!response.ok) {
+            throw new Error("Oye no sé que pasó");
+          }
+
+          const pokemon = await response.json();
+          return pokemon;
         } catch (error) {
-            console.error(error)
+          console.error(error);
         }
+      }
 
-    }
-    
-    async function renderPokemon() {
-        const elementName = document.getElementById('poke-name')
-        const elementImg = document.getElementById('poke-img')
-        
-        const pokemon = await getPokemon()
-        
-        elementName.textContent = pokemon.name
-        elementImg.src = pokemon.sprites.other['official-artwork'].front_default
-    }
+      async function renderPokemon() {
+        const elementName = document.getElementById("poke-name");
+        const elementImg = document.getElementById("poke-img");
 
-    renderPokemon()
+        const pokemon = await getPokemon();
 
+        elementName.textContent = pokemon.name;
+        elementImg.src =
+          pokemon.sprites.other["official-artwork"].front_default;
+      }
+
+      renderPokemon();
     </script>
   </body>
 </html>
