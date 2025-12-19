@@ -1,0 +1,13 @@
+#products .card .card-text,
+#products .card .card-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
+#products .card .card-title {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
