@@ -7,9 +7,10 @@ export const renderProduct = async (slug) => {
     <div class="col col-md-7">
           <img
             class="img-fluid"
-            src="https://dummyimage.com/800x400/000/fff&text=${product.title}"
+            src="${product.images[0]}"
             alt=""
             srcset=""
+            referrerpolicy="no-referrer"
           />
         </div>
     <div class="col col-md-5">

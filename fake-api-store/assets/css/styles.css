@@ -11,3 +11,9 @@
   -webkit-line-clamp: 1;
   line-clamp: 1;
 }
+
+
+.grid-btn {
+  display: grid;
+  gap: 1rem;
+}
